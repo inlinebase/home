@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+@import "tailwindcss";
 
 :root {
   --bg-dark: #050505;
@@ -38,6 +39,7 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Subtle background noise overlay */
@@ -87,12 +89,12 @@ body::before {
   font-family: var(--font-body);
 }
 
-/* Giant Typography with GSAP readiness */
+/* Responsive Giant Typography */
 .giant-title {
   font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 12vw, 15rem);
+  font-size: clamp(2.8rem, 11vw, 13.5rem);
   font-weight: 800;
-  line-height: 0.85;
+  line-height: 0.88;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: var(--accent-white);
@@ -102,28 +104,22 @@ body::before {
 
 .giant-title-outlined {
   font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 12vw, 15rem);
+  font-size: clamp(2.5rem, 9.5vw, 12rem);
   font-weight: 800;
-  line-height: 0.85;
+  line-height: 0.88;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.4);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
   user-select: none;
   white-space: nowrap;
   transition: -webkit-text-stroke 0.3s ease;
 }
 
 .giant-title-outlined:hover {
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.95);
 }
 
-.text-stroke-sm {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-}
-
-/* Glass & Card Containers */
 .card-border {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -142,7 +138,7 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 1rem 2.25rem;
+  padding: 0.875rem 2rem;
   background-color: var(--accent-white);
   color: var(--bg-dark);
   font-family: var(--font-ui);
@@ -169,7 +165,7 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 1rem 2.25rem;
+  padding: 0.875rem 2rem;
   background-color: transparent;
   color: var(--text-main);
   font-family: var(--font-ui);
@@ -218,7 +214,6 @@ body::before {
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-/* Layout Grid Utilities */
 .container {
   max-width: 1400px;
   margin: 0 auto;
