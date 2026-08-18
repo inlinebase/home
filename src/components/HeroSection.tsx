@@ -11,7 +11,7 @@ export default function HeroSection() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  const brandName = "INLINEBASE";
+  const brandName = "BASE";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
