@@ -5,13 +5,19 @@ import { ArrowUp, ExternalLink, Mail, Phone, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/data/companyData";
 
 export default function Footer() {
-  const [utcTime, setUtcTime] = useState<string>("");
+  const [istTime, setIstTime] = useState<string>("");
 
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
-      setUtcTime(
-        now.toISOString().substring(11, 19) + " UTC"
+      setIstTime(
+        now.toLocaleTimeString("en-US", {
+          timeZone: "Asia/Kolkata",
+          hour12: true,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }) + " IST"
       );
     };
     updateClock();
@@ -44,7 +50,7 @@ export default function Footer() {
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               <span>Bhubaneswar HQ</span>
               <span className="text-zinc-600">•</span>
-              <span>{utcTime || "00:00:00 UTC"}</span>
+              <span>{istTime || "00:00:00 IST"}</span>
             </div>
           </div>
 
