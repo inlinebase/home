@@ -9,6 +9,7 @@ import ServicesSection from "@/components/ServicesSection";
 import SaaSProductsSection from "@/components/SaaSProductsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import MobileBottomBar from "@/components/MobileBottomBar";
 
 export default function Home() {
   return (
@@ -39,6 +40,9 @@ export default function Home() {
           <ContactSection />
         </main>
         <Footer />
+
+        {/* Floating Quick Action Dock for Mobile Devices */}
+        <MobileBottomBar />
       </div>
     </SmoothScroll>
   );

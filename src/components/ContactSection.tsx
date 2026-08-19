@@ -76,7 +76,7 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-8 lg:px-12 bg-[#050505] border-t border-white/10 overflow-hidden"
+      className="relative pt-20 pb-28 sm:py-28 md:py-36 px-4 sm:px-8 lg:px-12 bg-[#050505] border-t border-white/10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}

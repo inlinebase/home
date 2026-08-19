@@ -76,26 +76,40 @@ export default function WorkShowcase() {
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-10 sm:mb-12 border-b border-zinc-800 pb-5 sm:pb-6 overflow-x-auto no-scrollbar">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-mono-code text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
-                activeCategory === cat
-                  ? "bg-white text-black font-bold scale-[1.02] shadow-lg"
-                  : "bg-white/5 text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"
-              }`}
-              data-cursor="FILTER"
-            >
-              {cat === "ALL" ? "All Works" : `${cat}s`}
-            </button>
-          ))}
+        {/* Filter Pills with Horizontal Touch Scroll */}
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-mono-code text-xs uppercase tracking-wider transition-all duration-300 shrink-0 ${
+                  activeCategory === cat
+                    ? "bg-white text-black font-bold scale-[1.02] shadow-lg"
+                    : "bg-white/5 text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"
+                }`}
+                data-cursor="FILTER"
+              >
+                {cat === "ALL" ? "All Works" : `${cat}s`}
+              </button>
+            ))}
+          </div>
+
+          <span className="hidden sm:inline-block font-mono-code text-[11px] text-zinc-500 uppercase tracking-widest shrink-0">
+            Swipe to Explore →
+          </span>
         </div>
 
-        {/* Device Mockup Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+        {/* Swipe Indicator for Mobile */}
+        <div className="flex md:hidden items-center justify-between text-zinc-400 font-mono-code text-[10px] uppercase tracking-wider mb-6">
+          <span>{filteredProjects.length} Projects Available</span>
+          <span className="animate-pulse flex items-center gap-1 text-white">
+            <span>Swipe Horizontally</span> →
+          </span>
+        </div>
+
+        {/* Device Mockup Portfolio Grid / Mobile Touch Carousel */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12 pb-6 md:pb-0 no-scrollbar">
           {filteredProjects.map((project) => {
             const isMobile = project.deviceType === "mobile";
             const isDesktop = project.deviceType === "desktop";
@@ -105,7 +119,7 @@ export default function WorkShowcase() {
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="work-card group relative rounded-2xl sm:rounded-3xl bg-[#0e0e16] border border-white/20 p-5 sm:p-8 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-500 hover:border-white hover:bg-[#141420] hover:shadow-2xl"
+                className="work-card snap-center shrink-0 w-[85vw] sm:w-[420px] md:w-auto group relative rounded-2xl sm:rounded-3xl bg-[#0e0e16] border border-white/20 p-4 sm:p-8 flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-500 hover:border-white hover:bg-[#141420] hover:shadow-2xl"
                 data-cursor="INSPECT"
               >
                 {/* Top Badge & Category Icon */}

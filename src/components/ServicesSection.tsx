@@ -111,15 +111,31 @@ export default function ServicesSection() {
                       }`}
                     >
                       <ArrowUpRight
-                        className={`h-4 w-4 sm:h-5 sm:w-5 ${isSelected ? "rotate-45" : ""}`}
+                        className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 ${isSelected ? "rotate-45" : ""}`}
                       />
                     </div>
                   </div>
 
-                  {/* Expandable Deliverables */}
+                  {/* Expandable Deliverables & Mobile Inline Visual Mockup */}
                   {isSelected && (
-                    <div className="px-5 pb-5 sm:px-8 sm:pb-8 pt-0 border-t border-black/10">
-                      <p className="text-xs sm:text-sm font-semibold text-black/90 mb-3 pt-3">
+                    <div className="px-5 pb-5 sm:px-8 sm:pb-8 pt-0 border-t border-black/10 animate-in fade-in duration-300">
+                      {/* Mobile Inline Visual Image Preview */}
+                      <div className="block lg:hidden my-4 relative rounded-xl overflow-hidden aspect-[16/9] border border-black/20 shadow-md">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="h-full w-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                        <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-white font-mono-code text-[10px]">
+                          <span className="bg-black/80 px-2 py-0.5 rounded border border-white/20 uppercase font-bold">
+                            {service.title} DEMO
+                          </span>
+                          <span className="text-zinc-300">SWIPE / TOUCH</span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs sm:text-sm font-semibold text-black/90 mb-2 pt-1">
                         {service.tagline}
                       </p>
                       <p className="text-xs text-black/75 leading-relaxed mb-4">
@@ -138,7 +154,7 @@ export default function ServicesSection() {
                         ))}
                       </div>
 
-                      <div className="flex flex-wrap gap-1.5 pt-1">
+                      <div className="flex flex-wrap gap-1.5 mb-4">
                         {service.tags.map((tag) => (
                           <span
                             key={tag}
@@ -148,6 +164,14 @@ export default function ServicesSection() {
                           </span>
                         ))}
                       </div>
+
+                      <a
+                        href="#contact"
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-black py-3 text-xs font-mono-code uppercase font-bold tracking-wider text-white hover:bg-zinc-800 transition-colors shadow-md"
+                      >
+                        <span>Request Service</span>
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
                     </div>
                   )}
                 </div>

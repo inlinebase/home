@@ -156,18 +156,18 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative min-h-screen w-full flex flex-col justify-between pt-28 sm:pt-32 pb-10 sm:pb-12 px-4 sm:px-8 lg:px-12 bg-[#050505] bg-grid-lines bg-noise overflow-hidden"
+      className="relative min-h-screen w-full flex flex-col justify-between pt-24 sm:pt-32 pb-16 sm:pb-12 px-4 sm:px-8 lg:px-12 bg-[#050505] bg-grid-lines bg-noise overflow-hidden"
     >
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-0 opacity-70" />
 
-      {/* Top Status Badge */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full flex justify-between items-center mb-4 sm:mb-6">
-        <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 backdrop-blur-md">
+      {/* Top Status Badge - Centered on Mobile */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full flex justify-center sm:justify-between items-center mb-6 sm:mb-8">
+        <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md shadow-lg">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
           </span>
-          <span className="font-mono-code text-[10px] sm:text-[11px] font-medium tracking-widest text-zinc-300 uppercase">
+          <span className="font-mono-code text-[11px] sm:text-xs font-semibold tracking-widest text-zinc-200 uppercase">
             WEBSITES • MOBILE APPS • SAAS
           </span>
         </div>
@@ -178,31 +178,31 @@ export default function HeroSection() {
       </div>
 
       {/* Main Editorial Headline */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto">
+      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto text-center sm:text-left">
         <h1
           ref={headlineRef}
           className="font-display font-black clamp-hero text-white tracking-tight uppercase select-none"
         >
           <div className="overflow-hidden py-0.5">
-            <span className="hero-line block text-white">WE BUILD</span>
+            <span className="hero-line block text-white">WE TURN</span>
           </div>
           <div className="overflow-hidden py-0.5">
-            <span className="hero-line block text-zinc-400">DIGITAL</span>
+            <span className="hero-line block text-zinc-400">IDEAS INTO</span>
           </div>
           <div className="overflow-hidden py-0.5">
-            <span className="hero-line block text-white">EXPERIENCES.</span>
+            <span className="hero-line block text-white">PRODUCTS.</span>
           </div>
         </h1>
 
-        {/* Supporting Message */}
+        {/* Supporting Message & Touch Action CTAs */}
         <div className="mt-6 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-end">
-          <p className="hero-desc lg:col-span-7 text-sm sm:text-2xl text-zinc-300 font-light leading-relaxed">
+          <p className="hero-desc lg:col-span-7 text-sm sm:text-2xl text-zinc-300 font-light leading-relaxed text-center sm:text-left">
             {COMPANY_INFO.supportingText}
           </p>
 
-          {/* Action CTAs Layout: Full-width touch layout on mobile */}
-          <div className="lg:col-span-5 flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3 lg:justify-end items-stretch sm:items-center">
-            {/* Primary CTA */}
+          {/* Action CTAs Layout: Structured touch targets on mobile */}
+          <div className="lg:col-span-5 flex flex-col gap-3 w-full lg:items-end">
+            {/* Primary CTA - Full Width on Mobile */}
             <a
               href="#contact"
               className="hero-cta-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black transition-all duration-300 hover:bg-zinc-200 shadow-xl"
@@ -212,7 +212,7 @@ export default function HeroSection() {
               <ArrowUpRight className="h-4 w-4" />
             </a>
 
-            {/* Email & Phone side-by-side on mobile */}
+            {/* Email & Phone - 2 Column Grid on Mobile */}
             <div className="grid grid-cols-2 gap-2.5 w-full sm:w-auto sm:flex sm:gap-3">
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
@@ -233,7 +233,7 @@ export default function HeroSection() {
               </a>
             </div>
 
-            {/* Agency Portal Button */}
+            {/* Agency Portal Button - Full Width on Mobile */}
             <a
               href={COMPANY_INFO.agencyUrl}
               target="_blank"

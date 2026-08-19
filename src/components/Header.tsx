@@ -139,64 +139,92 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Fullscreen Menu */}
+      {/* Mobile Fullscreen Menu Sheet */}
       <div
-        className={`fixed inset-0 z-40 bg-[#050505] transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-[#07070a]/95 backdrop-blur-2xl transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 lg:hidden ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-full"
         }`}
       >
-        <div className="pt-20 space-y-6">
+        <div className="pt-20 space-y-6 overflow-y-auto max-h-[calc(100vh-140px)] no-scrollbar">
           {/* Mobile Main CTA Button */}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="w-full flex items-center justify-between rounded-2xl bg-white px-6 py-4 text-sm font-bold uppercase tracking-wider text-black shadow-xl"
+            className="w-full flex items-center justify-between rounded-2xl bg-white px-6 py-4 text-sm font-bold uppercase tracking-wider text-black shadow-2xl active:scale-[0.98] transition-transform"
           >
-            <span>Start a Project</span>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Start a Project</span>
+            </div>
             <ArrowUpRight className="h-4 w-4" />
           </a>
 
-          <p className="font-mono-code text-xs text-zinc-500 uppercase tracking-widest">
-            // Inlinebase Navigation
-          </p>
-          <div className="flex flex-col gap-4">
-            {NAV_ITEMS.map((item, index) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="group flex items-center justify-between text-2xl font-display font-extrabold text-zinc-300 hover:text-white transition-colors"
-              >
-                <span>{item.label}</span>
-                <span className="font-mono-code text-xs text-zinc-600 group-hover:text-white">
-                  0{index + 1}
-                </span>
-              </a>
-            ))}
+          <div className="flex items-center justify-between">
+            <p className="font-mono-code text-[11px] text-zinc-500 uppercase tracking-widest">
+              // Navigation Menu
+            </p>
+            <span className="font-mono-code text-[10px] text-zinc-400 bg-white/10 px-2 py-0.5 rounded-full border border-white/10">
+              INLINEBASE UI
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            {NAV_ITEMS.map((item, index) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`group flex items-center justify-between p-3.5 rounded-xl border transition-all duration-200 ${
+                    isActive
+                      ? "bg-white/10 border-white/30 text-white font-bold"
+                      : "bg-white/5 border-transparent text-zinc-300 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono-code text-xs text-zinc-500">0{index + 1}</span>
+                    <span className="text-xl font-display font-extrabold tracking-tight">{item.label}</span>
+                  </div>
+                  {isActive && (
+                    <span className="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                  )}
+                </a>
+              );
+            })}
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 pt-6 space-y-3">
-          <div className="flex flex-col gap-2 font-mono-code text-xs">
-            <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2 text-white hover:underline">
-              <Mail className="h-4 w-4 text-zinc-400" />
-              <span>{COMPANY_INFO.email}</span>
-            </a>
-            <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center gap-2 text-white hover:underline">
-              <Phone className="h-4 w-4 text-zinc-400" />
-              <span>{COMPANY_INFO.phone}</span>
+        {/* Bottom Contact Details in Mobile Drawer */}
+        <div className="border-t border-white/10 pt-4 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-mono-code text-white active:bg-white/10"
+            >
+              <Mail className="h-3.5 w-3.5 text-zinc-400" />
+              <span>Email</span>
             </a>
             <a
-              href={COMPANY_INFO.agencyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-zinc-300 hover:text-white underline pt-1"
+              href={`tel:${COMPANY_INFO.phone}`}
+              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-mono-code text-white active:bg-white/10"
             >
-              <span>Visit Agency Portal → {COMPANY_INFO.agencyUrl}</span>
+              <Phone className="h-3.5 w-3.5 text-zinc-400" />
+              <span>Call</span>
             </a>
           </div>
+
+          <a
+            href={COMPANY_INFO.agencyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs font-mono-code text-zinc-300 hover:text-white"
+          >
+            <span>Visit Agency Portal</span>
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
         </div>
       </div>
     </>
