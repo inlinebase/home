@@ -28,7 +28,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const databaseUrl = process.env.DATABASE_URL;
+    const databaseUrl =
+      process.env.DATABASE_URL ||
+      "postgresql://neondb_owner:npg_VXNRx0Jn6WGM@ep-proud-mountain-ay7j1i24-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require";
+
     if (!databaseUrl) {
       console.error("DATABASE_URL is missing in environment variables.");
       return NextResponse.json(
