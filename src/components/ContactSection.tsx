@@ -21,6 +21,7 @@ export default function ContactSection() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -61,15 +62,36 @@ export default function ContactSection() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setServerError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit inquiry. Please try again.");
+      }
+
       setIsSubmitted(true);
-    }, 1000);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setServerError(err.message);
+      } else {
+        setServerError("An unexpected error occurred. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -298,6 +320,12 @@ export default function ContactSection() {
                     </span>
                   )}
                 </div>
+
+                {serverError && (
+                  <div className="p-4 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs font-mono-code leading-relaxed">
+                    ⚠️ {serverError}
+                  </div>
+                )}
 
                 <button
                   type="submit"
